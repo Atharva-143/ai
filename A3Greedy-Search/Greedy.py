@@ -1,5 +1,3 @@
-import sys
-
 def selection_sort(arr):
     n = len(arr)
     print("Selection Sort Steps:")
@@ -20,7 +18,7 @@ def prims_mst(graph, vertices):
     
     print("Edge \tWeight")
     for _ in range(vertices - 1):
-        minimum = sys.maxsize
+        minimum = 999
         x = 0
         y = 0
         
