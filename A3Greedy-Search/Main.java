@@ -3,12 +3,11 @@ import java.util.Scanner;
 public class Main 
 {
 
-    
     static int[] selectionSort(int[] arr) 
     {
         int n = arr.length;
 
-        System.out.println("Selection Sort Steps:");
+        System.out.println("\nSelection Sort Steps:");
 
         for (int i = 0; i < n; i++) 
         {
@@ -22,7 +21,6 @@ public class Main
                 }
             }
 
-            
             int temp = arr[i];
             arr[i] = arr[minIndex];
             arr[minIndex] = temp;
@@ -40,8 +38,7 @@ public class Main
         return arr;
     }
 
-    
-    static int primsMST(int[][] graph, int vertices) 
+    static void primsMST(int[][] graph, int vertices) 
     {
         boolean[] selected = new boolean[vertices];
 
@@ -49,6 +46,7 @@ public class Main
 
         int totalCost = 0;
 
+        System.out.println("\nEdges in MST:");
         System.out.println("Edge \tWeight");
 
         for (int count = 0; count < vertices - 1; count++) 
@@ -65,7 +63,7 @@ public class Main
                     {
                         if (!selected[j] && graph[i][j] != 0) 
                         {
-                            if (minimum > graph[i][j]) 
+                            if (graph[i][j] < minimum) 
                             {
                                 minimum = graph[i][j];
                                 x = i;
@@ -84,23 +82,20 @@ public class Main
         }
 
         System.out.println("Total MST Cost: " + totalCost);
-
-        return totalCost;
     }
 
-    // Main Function
     public static void main(String[] args) 
     {
         Scanner sc = new Scanner(System.in);
 
         while (true) 
         {
-            System.out.println("\n=== MENU DRIVEN PROGRAM ===");
+            System.out.println("\n========== MENU ==========");
             System.out.println("1. Selection Sort");
-            System.out.println("2. Prim's MST Algorithm");
+            System.out.println("2. Prim's MST");
             System.out.println("3. Exit");
 
-            System.out.print("Enter your choice (1-3): ");
+            System.out.print("Enter your choice: ");
 
             int choice = sc.nextInt();
 
@@ -130,7 +125,7 @@ public class Main
 
                 int[] sortedArr = selectionSort(arr);
 
-                System.out.print("Final Sorted array: ");
+                System.out.print("Final Sorted Array: ");
 
                 for (int num : sortedArr) 
                 {
@@ -142,25 +137,17 @@ public class Main
 
             else if (choice == 2) 
             {
-                System.out.print("Enter number of vertices: ");
+                int vertices = 4;
 
-                int vertices = sc.nextInt();
-
-                int[][] graph = new int[vertices][vertices];
-
-                System.out.println("Enter adjacency matrix row by row (0 for no edge):");
-
-                for (int i = 0; i < vertices; i++) 
+                int[][] graph = 
                 {
-                    System.out.println("Row " + i + ":");
+                    {0, 2, 5, 6},
+                    {2, 0, 3, 0},
+                    {5, 3, 0, 1},
+                    {6, 0, 1, 0}
+                };
 
-                    for (int j = 0; j < vertices; j++) 
-                    {
-                        graph[i][j] = sc.nextInt();
-                    }
-                }
-
-                System.out.println("Input Graph:");
+                System.out.println("\nGraph Adjacency Matrix:");
 
                 for (int i = 0; i < vertices; i++) 
                 {
@@ -171,8 +158,6 @@ public class Main
 
                     System.out.println();
                 }
-
-                System.out.println();
 
                 primsMST(graph, vertices);
             }
@@ -185,7 +170,7 @@ public class Main
 
             else 
             {
-                System.out.println("Invalid choice! Try again.");
+                System.out.println("Invalid choice!");
             }
         }
 
